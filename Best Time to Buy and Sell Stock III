@@ -1,0 +1,17 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        current = 0
+        profit = 0
+        trans = []
+        for day in range(1,len(prices)):
+            if prices[current] < prices[day]:
+                trans.append(prices[day]-prices[current])
+                current = day
+            else:
+                current = day
+        while len(trans) > 2:
+            trans.remove(min(trans))
+    
+        profit = trans[0] + trans[1]
+        return profit
+        
